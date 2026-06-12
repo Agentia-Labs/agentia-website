@@ -285,25 +285,36 @@ section { padding: 104px 48px; }
 .process .s-pill { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: rgba(255,255,255,0.45); }
 .process .s-head { color: var(--dark-t); }
 .process .s-sub { color: rgba(255,255,255,0.45); }
-.proc-wrap { margin-top: 72px; }
+.proc-wrap { margin-top: 72px; position: relative; }
+.proc-lines {
+  position: absolute;
+  top: 25px; left: calc(10% + 26px); right: calc(10% + 26px);
+  height: 1px; z-index: 0;
+}
+.proc-line-bg {
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.10);
+}
+.proc-line-fill {
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 0%;
+  background: linear-gradient(to right, var(--gold), #E8C870);
+  transition: none;
+  box-shadow: 0 0 6px rgba(196,154,58,0.5);
+}
 .proc-grid {
   display: grid; grid-template-columns: repeat(5, 1fr); position: relative;
 }
-.proc-grid::before {
-  content: ''; position: absolute;
-  top: 25px; left: calc(10% + 14px); right: calc(10% + 14px);
-  height: 1px; background: rgba(255,255,255,0.10);
-}
-.proc-step { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 0 12px; }
+.proc-step { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; padding: 0 12px; position: relative; z-index: 2; }
 .proc-num {
   width: 52px; height: 52px; flex-shrink: 0;
   border: 1px solid rgba(255,255,255,0.15); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.5);
   background: var(--dark); position: relative; z-index: 1;
-  transition: border-color 0.3s, color 0.3s;
+  transition: border-color 0.4s, color 0.4s, box-shadow 0.4s;
 }
-.proc-step:hover .proc-num { border-color: var(--gold); color: var(--gold); }
+.proc-num.lit { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 12px rgba(196,154,58,0.35); }
 .proc-step h4 { font-size: 15px; font-weight: 500; color: var(--dark-t); }
 .proc-step p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.55; }
 
@@ -382,7 +393,7 @@ footer a:hover { color: rgba(255,255,255,0.7); }
   .met-item:nth-child(3) { border-top: 1px solid rgba(210,170,140,0.35); border-right: 1px solid rgba(210,170,140,0.35); }
   .met-item:nth-child(4) { border-top: 1px solid rgba(210,170,140,0.35); }
   .proc-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
-  .proc-grid::before { display: none; }
+  .proc-lines { top: 25px; left: calc(25% + 26px); right: calc(25% + 26px); }
   .feat-top { flex-direction: column; align-items: flex-start; }
 }
 
@@ -402,7 +413,15 @@ footer a:hover { color: rgba(255,255,255,0.7); }
   .met-item:nth-child(3) { border-right: none; }
   .metric-strip { flex-wrap: wrap; }
   .ms-item { flex: 1 1 40%; border-right: none; border-bottom: 1px solid var(--border); }
-  .proc-grid { grid-template-columns: 1fr; }
+  .proc-grid { grid-template-columns: 1fr; gap: 40px; }
+  .proc-lines {
+    top: 26px; bottom: 26px;
+    left: 50%; right: auto;
+    transform: translateX(-50%);
+    width: 1px; height: auto;
+  }
+  .proc-line-bg { width: 1px; height: 100%; }
+  .proc-line-fill { width: 1px !important; height: 0%; top: 0; }
   .vision { padding: 100px 20px; }
   footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
   .fp-bench .fp-bg { object-position: 80% center; }
@@ -584,6 +603,10 @@ footer a:hover { color: rgba(255,255,255,0.7); }
       <p class="s-sub">A proven process built from dozens of AI operations deployments across industries.</p>
     </div>
     <div class="proc-wrap rv">
+      <div class="proc-lines">
+        <div class="proc-line-bg"></div>
+        <div class="proc-line-fill" id="proc-line-fill"></div>
+      </div>
       <div class="proc-grid">
         <div class="proc-step">
           <div class="proc-num">01</div>
@@ -625,12 +648,6 @@ footer a:hover { color: rgba(255,255,255,0.7); }
     </div>
     <div class="agents-grid">
       <div class="ac rv rv-d1">
-        <div class="ac-tag">Talent Operations</div>
-        <h3>Recruiting Agent</h3>
-        <p>Sources candidates, screens applications, schedules interviews, and maintains your hiring pipeline — 24/7, without a recruiter.</p>
-        <a href="#" class="ac-link">Explore →</a>
-      </div>
-      <div class="ac rv rv-d2">
         <div class="ac-tag">Customer Operations</div>
         <h3>Support Agent</h3>
         <p>Handles tier-1 and tier-2 support tickets with the context of your entire knowledge base, escalating only when needed.</p>
@@ -749,6 +766,50 @@ footer a:hover { color: rgba(255,255,255,0.7); }
     c.setAttribute('fill', isGold ? '#C49A3A' : 'rgba(255,255,255,0.6)');
     fSvg.appendChild(c);
   });
+})();
+
+/* ── PROCESS LINE ANIMATION ─────────────────────── */
+(function () {
+  const fill = document.getElementById('proc-line-fill');
+  if (!fill) return;
+  const nums = Array.from(document.querySelectorAll('.proc-grid .proc-num'));
+  const TRAVEL = 3400, PAUSE = 900, TOTAL = TRAVEL + PAUSE;
+  let start = null, running = false;
+
+  function easeInOut(t) {
+    return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+  }
+
+  function frame(ts) {
+    if (!start) start = ts;
+    const elapsed = (ts - start) % TOTAL;
+    const mobile = window.innerWidth <= 640;
+    let p = elapsed < TRAVEL ? easeInOut(elapsed / TRAVEL) : 1;
+
+    if (mobile) {
+      fill.style.height = (p * 100).toFixed(2) + '%';
+      fill.style.width = '1px';
+    } else {
+      fill.style.width = (p * 100).toFixed(2) + '%';
+      fill.style.height = '';
+    }
+
+    nums.forEach((n, i) => {
+      const threshold = i / (nums.length - 1);
+      if (p >= threshold - 0.03) n.classList.add('lit');
+      else if (elapsed < 80) n.classList.remove('lit'); // only clear on reset
+    });
+
+    requestAnimationFrame(frame);
+  }
+
+  new IntersectionObserver((entries, obs) => {
+    if (entries[0].isIntersecting && !running) {
+      running = true;
+      requestAnimationFrame(frame);
+      obs.disconnect();
+    }
+  }, { threshold: 0.25 }).observe(document.querySelector('.process'));
 })();
 
 /* ── TICKER ─────────────────────────────────────── */
