@@ -88,11 +88,11 @@ nav {
 
 /* ── TICKER ───────────────────────────────────────── */
 .ticker-row {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 5px;
   margin-bottom: 36px; justify-content: center;
 }
 .ticker-label { font-size: 15px; font-weight: 500; color: var(--text); letter-spacing: -0.01em; }
-.ticker-arrow { font-size: 15px; color: var(--light-muted); }
+.ticker-arrow { font-size: 13px; color: var(--light-muted); margin-right: 1px; }
 .ticker {
   position: relative; overflow: hidden;
   height: 1.5em; min-width: 220px;
@@ -164,6 +164,25 @@ nav {
 .ms-item:last-child { border-right: none; }
 .ms-num { font-size: 34px; font-weight: 300; letter-spacing: -0.04em; color: var(--text); }
 .ms-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+/* ── BRIDGE BETWEEN PANELS ────────────────────────── */
+.fp-bridge {
+  background: var(--bg);
+  padding: 88px 40px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.fp-bridge h2 {
+  font-size: clamp(28px, 4.5vw, 52px);
+  font-weight: 300; letter-spacing: -0.035em; line-height: 1.1;
+  max-width: 640px; margin: 16px auto 0;
+}
+.fp-bridge p {
+  font-size: 17px; color: var(--muted);
+  margin-top: 16px; max-width: 420px; margin-left: auto; margin-right: auto;
+  line-height: 1.6;
+}
 
 /* ── FULLSCREEN STORY PANELS ──────────────────────── */
 .fp {
@@ -386,6 +405,7 @@ footer a:hover { color: rgba(255,255,255,0.7); }
   .proc-grid { grid-template-columns: 1fr; }
   .vision { padding: 100px 20px; }
   footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+  .fp-bench .fp-bg { object-position: 80% center; }
 }
 
 </style>
@@ -425,7 +445,7 @@ footer a:hover { color: rgba(255,255,255,0.7); }
   <h1>What if your workforce<br>were <em>limitless</em></h1>
   <div class="ticker-row">
     <span class="ticker-label">Built for</span>
-    <span class="ticker-arrow">→</span>
+    <span class="ticker-arrow">›</span>
     <div class="ticker" id="ticker">
       <span class="tick active">founders</span>
       <span class="tick">operations teams</span>
@@ -465,8 +485,15 @@ footer a:hover { color: rgba(255,255,255,0.7); }
   </div>
 </div>
 
+<!-- BRIDGE -->
+<div class="fp-bridge rv">
+  <div class="s-pill">The difference</div>
+  <h2>Your digital workforce,<br>in good hands.</h2>
+  <p>There is a better way to run your operations — one that never burns out, never misses a deadline, and scales with your ambition.</p>
+</div>
+
 <!-- FULLSCREEN PANEL 2: WITH AGENTIA -->
-<div class="fp" id="story-after">
+<div class="fp fp-bench" id="story-after">
   <img src="./bench.jpg" alt="With Agentia" class="fp-bg"
        onerror="this.style.display='none'">
   <div class="fp-fallback fp-fallback-b"></div>
