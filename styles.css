@@ -511,7 +511,7 @@ nav {
 
 .lifecycle {
   padding: 104px 48px;
-  background: var(--bg);
+  background: var(--panel);
 }
 
 .cycle {
@@ -683,13 +683,12 @@ nav {
   padding: 104px 0;
 }
 
-.workspace-section,
-.verticals-section {
-  background: var(--paper);
+.workspace-section {
+  background: #FBF8F1;
 }
 
 .jobs-section {
-  background: var(--bg);
+  background: var(--sand);
 }
 
 .security-section {
@@ -699,6 +698,10 @@ nav {
 .agents-section {
   padding: 104px 48px;
   background: var(--white);
+}
+
+.verticals-section {
+  background: #F4F6F0;
 }
 
 #agents .s-sub {
@@ -1131,51 +1134,6 @@ nav {
   display: block;
 }
 
-.cta-section {
-  padding: 92px 0;
-  color: var(--dark-text);
-  background:
-    linear-gradient(90deg, rgba(23, 20, 15, 0.96), rgba(38, 45, 34, 0.94)),
-    var(--dark);
-}
-
-.cta-inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.cta-inner .section-kicker {
-  color: rgba(248, 244, 235, 0.72);
-}
-
-.cta-inner .section-kicker::before {
-  background: #e5bc9b;
-}
-
-.cta-inner h2 {
-  max-width: 980px;
-  margin-top: 16px;
-  margin-right: auto;
-  margin-left: auto;
-  font-size: clamp(36px, 5.1vw, 68px);
-  font-weight: 300;
-  line-height: 1.04;
-  text-wrap: balance;
-}
-
-.cta-inner p {
-  max-width: 560px;
-  margin: 20px auto 32px;
-  color: rgba(248, 244, 235, 0.72);
-  font-size: 18px;
-}
-
-.cta-inner .btn-primary {
-  color: var(--dark);
-  background: var(--white);
-}
-
 .footer {
   padding: 34px 0;
   color: rgba(248, 244, 235, 0.54);
@@ -1427,8 +1385,7 @@ nav {
   }
 
   .hero-copy,
-  .body-copy,
-  .cta-inner p {
+  .body-copy {
     font-size: 16px;
   }
 
