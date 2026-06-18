@@ -1411,6 +1411,23 @@ nav {
   }
 }
 
+@media (max-width: 900px) {
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-right {
+    margin-left: auto;
+    gap: 14px;
+  }
+
+  .ham {
+    display: flex;
+    order: 3;
+  }
+}
+
 @media (max-width: 780px) {
   nav {
     height: 64px;
