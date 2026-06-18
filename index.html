@@ -149,14 +149,14 @@
             <h3 data-i18n="agents.conversational.label">Conversan con clientes y equipos</h3>
             <h4 data-i18n="agents.conversational.title">Entienden el caso y coordinan el siguiente paso.</h4>
             <p data-i18n="agents.conversational.copy">Recogen contexto, resuelven dudas y, cuando hace falta ejecutar, activan trabajo real sin sacar a la persona de la conversación.</p>
-            <div class="tt-shot-wrap"><img class="tt-shot" src="assets/agent-chat.png" alt="Vista de un agente conversacional" loading="lazy"></div>
+            <div class="tt-shot-wrap"><img class="tt-shot" src="assets/agent-chat.png" data-image-en="assets/agent-chat.png" data-image-es="assets/agent-chat-es.png" data-i18n-alt="agents.conversational.alt" alt="Vista de un agente conversacional" loading="lazy"></div>
           </div>
           <div class="tt-card">
             <div class="tt-icon head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
             <h3 data-i18n="agents.headless.label">Ejecutan en segundo plano</h3>
             <h4 data-i18n="agents.headless.title">Trabajan dentro de tus sistemas sin generar ruido.</h4>
             <p data-i18n="agents.headless.copy">Consultan datos, procesan documentos, actualizan sistemas, preparan respuestas y completan tareas de principio a fin.</p>
-            <div class="tt-shot-wrap"><img class="tt-shot" src="assets/agent-email.png" alt="Vista de un agente headless preparando una acción" loading="lazy"></div>
+            <div class="tt-shot-wrap"><img class="tt-shot" src="assets/agent-email.png" data-image-en="assets/agent-email.png" data-image-es="assets/agent-email-es.png" data-i18n-alt="agents.headless.alt" alt="Vista de un agente sin interfaz preparando una acción" loading="lazy"></div>
           </div>
         </div>
         <div class="hitl rv">
@@ -349,9 +349,11 @@
           "agents.conversational.label": "Conversan con clientes y equipos",
           "agents.conversational.title": "Entienden el caso y coordinan el siguiente paso.",
           "agents.conversational.copy": "Recogen contexto, resuelven dudas y, cuando hace falta ejecutar, activan trabajo real sin sacar a la persona de la conversación.",
+          "agents.conversational.alt": "Vista de un agente conversacional",
           "agents.headless.label": "Ejecutan en segundo plano",
           "agents.headless.title": "Trabajan dentro de tus sistemas sin generar ruido.",
           "agents.headless.copy": "Consultan datos, procesan documentos, actualizan sistemas, preparan respuestas y completan tareas de principio a fin.",
+          "agents.headless.alt": "Vista de un agente sin interfaz preparando una acción",
           "agents.hitl": "<b>Un mismo sistema, dos formas de trabajar.</b> El usuario ve una conversación sencilla. Por debajo, Agentia coordina la ejecución completa con empleados digitales conectados, trazabilidad y escalado humano cuando hace falta.",
           "workspace.kicker": "Agentia Workspace",
           "workspace.title": "Supervisa a tus empleados digitales como a cualquier miembro del equipo.",
@@ -440,9 +442,11 @@
           "agents.conversational.label": "They converse with customers and teams",
           "agents.conversational.title": "They understand the case and coordinate the next step.",
           "agents.conversational.copy": "They gather context, answer questions and, when work needs to be executed, trigger real actions without taking the person out of the conversation.",
+          "agents.conversational.alt": "View of a conversational agent",
           "agents.headless.label": "They execute in the background",
           "agents.headless.title": "They work inside your systems without creating noise.",
           "agents.headless.copy": "They query data, process documents, update systems, prepare responses and complete end-to-end tasks.",
+          "agents.headless.alt": "View of a headless agent preparing an action",
           "agents.hitl": "<b>One system, two ways of working.</b> The user sees a simple conversation. Underneath, Agentia coordinates full execution with connected digital employees, traceability and human escalation when needed.",
           "workspace.kicker": "Agentia Workspace",
           "workspace.title": "Supervise your digital employees like any other member of the team.",
@@ -567,6 +571,17 @@
         const key = node.getAttribute("data-i18n");
         const value = dictionary.strings[key];
         if (value) node.innerHTML = value;
+      });
+
+      document.querySelectorAll("[data-i18n-alt]").forEach((node) => {
+        const key = node.getAttribute("data-i18n-alt");
+        const value = dictionary.strings[key];
+        if (value) node.setAttribute("alt", value);
+      });
+
+      document.querySelectorAll("[data-image-en][data-image-es]").forEach((node) => {
+        const nextSrc = node.getAttribute(lang === "es" ? "data-image-es" : "data-image-en");
+        if (nextSrc && node.getAttribute("src") !== nextSrc) node.setAttribute("src", nextSrc);
       });
 
       document.querySelectorAll("[data-mailto]").forEach((node) => {
