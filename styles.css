@@ -683,16 +683,12 @@ nav {
   padding: 104px 0;
 }
 
-.workspace-section {
+.trust-section {
   background: #FBF8F1;
 }
 
 .jobs-section {
   background: var(--sand);
-}
-
-.security-section {
-  background: var(--panel-2);
 }
 
 .agents-section {
@@ -994,38 +990,35 @@ nav {
 }
 
 .job-card,
-.security-grid article,
-.control-list article {
+.trust-list article {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--paper);
 }
 
 .agent-card h3,
-.control-list h3,
 .job-card h3,
-.security-grid h3 {
+.trust-list h3 {
   font-size: 22px;
   font-weight: 600;
   line-height: 1.2;
 }
 
-.control-list h3 {
+.trust-list h3 {
   font-size: 20px;
   line-height: 1.14;
 }
 
 .agent-card p,
-.control-list p,
 .job-card p,
-.security-grid p {
+.trust-list p {
   margin-top: 12px;
   color: var(--muted);
   font-size: 15px;
   line-height: 1.65;
 }
 
-.control-list p {
+.trust-list p {
   margin-top: 8px;
   font-size: 14px;
   line-height: 1.5;
@@ -1088,19 +1081,19 @@ nav {
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
 }
 
-.workspace-intro {
-  align-items: center;
+.trust-heading {
+  max-width: 880px;
   margin-bottom: 48px;
 }
 
-.workspace-intro > .body-copy {
-  align-self: center;
-  max-width: 590px;
+.trust-heading .body-copy {
+  max-width: 680px;
+  margin-top: 22px;
 }
 
-.workspace-layout {
+.trust-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.36fr) minmax(320px, 0.64fr);
+  grid-template-columns: minmax(0, 1.42fr) minmax(300px, 0.58fr);
   gap: 34px;
   align-items: center;
 }
@@ -1123,19 +1116,19 @@ nav {
   font-size: 13px;
 }
 
-.control-list {
+.trust-list {
   display: grid;
-  grid-template-rows: repeat(4, minmax(0, auto));
+  grid-template-rows: repeat(3, minmax(0, auto));
   align-self: center;
   height: auto;
-  gap: 10px;
+  gap: 12px;
 }
 
-.control-list article {
-  padding: 16px 18px;
+.trust-list article {
+  padding: 20px;
 }
 
-.control-list span,
+.trust-list span,
 .vertical-list span {
   display: inline-flex;
   margin-bottom: 10px;
@@ -1150,14 +1143,7 @@ nav {
   gap: 16px;
 }
 
-.security-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.job-card,
-.security-grid article {
+.job-card {
   min-height: 204px;
   padding: 26px;
 }
@@ -1213,19 +1199,10 @@ nav {
   min-height: 0;
 }
 
-.security-grid article {
-  background: rgba(255, 253, 250, 0.72);
-}
-
-.security-title {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-}
-
-.security-section .centered-heading {
-  max-width: 1180px;
+.trust-list article {
+  min-height: 0;
+  padding: 20px;
+  background: rgba(255, 253, 250, 0.76);
 }
 
 .title-line {
@@ -1287,17 +1264,16 @@ nav {
     gap: 14px;
   }
 
-  .jobs-grid,
-  .security-grid {
+  .jobs-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .workspace-layout {
+  .trust-layout {
     grid-template-columns: 1fr;
   }
 
-  .control-list {
-    height: auto;
+  .trust-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -1445,7 +1421,7 @@ nav {
   }
 
   .jobs-grid,
-  .security-grid {
+  .trust-list {
     grid-template-columns: 1fr;
   }
 
@@ -1515,8 +1491,7 @@ nav {
   }
 
   .job-card,
-  .security-grid article,
-  .control-list article {
+  .trust-list article {
     padding: 22px;
   }
 }
