@@ -698,7 +698,6 @@ nav {
   background: var(--paper);
 }
 
-.method-section,
 .jobs-section {
   background: var(--bg);
 }
@@ -912,13 +911,6 @@ nav {
   margin-top: 28px;
 }
 
-.method-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.method-card,
 .job-card,
 .security-grid article,
 .control-list article {
@@ -927,43 +919,6 @@ nav {
   background: var(--paper);
 }
 
-.method-card {
-  min-height: 330px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 28px;
-}
-
-.method-number {
-  color: var(--quiet);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.method-icon {
-  width: 46px;
-  height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 54px 0 24px;
-  border-radius: var(--radius);
-  color: var(--accent-dark);
-  background: #f4e2d5;
-}
-
-.method-icon svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.method-card h3,
 .agent-card h3,
 .control-list h3,
 .job-card h3,
@@ -978,7 +933,6 @@ nav {
   line-height: 1.14;
 }
 
-.method-card p,
 .agent-card p,
 .control-list p,
 .job-card p,
@@ -1306,7 +1260,6 @@ nav {
     gap: 14px;
   }
 
-  .method-grid,
   .jobs-grid,
   .security-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1464,7 +1417,6 @@ nav {
     text-wrap: balance;
   }
 
-  .method-grid,
   .jobs-grid,
   .security-grid {
     grid-template-columns: 1fr;
@@ -1485,14 +1437,6 @@ nav {
 
   .tt-grid {
     grid-template-columns: 1fr;
-  }
-
-  .method-card {
-    min-height: auto;
-  }
-
-  .method-icon {
-    margin-top: 34px;
   }
 
   .agent-card {
@@ -1530,7 +1474,6 @@ nav {
     font-size: 34px;
   }
 
-  .method-card,
   .job-card,
   .security-grid article,
   .control-list article {
