@@ -361,16 +361,6 @@ nav {
   font-style: italic;
 }
 
-.hero-focus-line {
-  margin-bottom: 26px;
-  color: var(--accent-d);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
 .hero p {
   max-width: 520px;
   margin-bottom: 40px;
@@ -1539,11 +1529,6 @@ nav {
     font-size: clamp(42px, 14vw, 68px);
     line-height: 1.04;
     letter-spacing: -0.04em;
-  }
-
-  .hero-focus-line {
-    margin-bottom: 24px;
-    font-size: 12px;
   }
 
   .hero p {
