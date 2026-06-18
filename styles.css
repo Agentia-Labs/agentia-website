@@ -348,7 +348,7 @@ nav {
 }
 
 .hero h1 {
-  max-width: 920px;
+  max-width: 1040px;
   margin-bottom: 24px;
   color: var(--text);
   font-size: clamp(46px, 7.5vw, 88px);
@@ -362,7 +362,7 @@ nav {
 }
 
 .hero p {
-  max-width: 520px;
+  max-width: 720px;
   margin-bottom: 40px;
   color: var(--muted);
   font-size: clamp(16px, 2vw, 20px);
