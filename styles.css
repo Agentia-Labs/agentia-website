@@ -701,15 +701,6 @@ nav {
   background: var(--white);
 }
 
-#employees {
-  padding-bottom: 24px;
-}
-
-#agents.agents-section {
-  padding-top: 24px;
-  padding-bottom: 56px;
-}
-
 #agents .s-sub {
   max-width: 860px;
   text-wrap: balance;
@@ -1136,16 +1127,6 @@ nav {
   max-width: 1180px;
 }
 
-#why-agentia .centered-heading {
-  max-width: 1080px;
-}
-
-#why-agentia .section-title {
-  max-width: 1060px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
 .title-line {
   display: block;
 }
@@ -1414,15 +1395,6 @@ nav {
 
   .agents-section {
     padding: 72px 20px;
-  }
-
-  #employees {
-    padding-bottom: 20px;
-  }
-
-  #agents.agents-section {
-    padding-top: 20px;
-    padding-bottom: 40px;
   }
 
   .tt-grid {
