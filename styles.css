@@ -711,6 +711,14 @@ nav {
   padding-top: 10px;
 }
 
+.problem-lead {
+  color: var(--text);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
 .trust-section {
   background: #FBF8F1;
 }
@@ -754,14 +762,18 @@ nav {
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
   gap: 18px;
 }
 
 .pricing-card {
+  width: 100%;
+  min-width: 0;
   min-height: 308px;
   display: flex;
   flex-direction: column;
+  justify-self: stretch;
   padding: 30px;
   border: 1px solid rgba(247, 245, 240, 0.14);
   border-radius: var(--radius);
@@ -799,6 +811,14 @@ nav {
   color: var(--dark-text);
   font-size: 14px;
   font-weight: 600;
+}
+
+.pricing-note {
+  max-width: 760px;
+  margin: 18px 0 0;
+  color: rgba(247, 245, 240, 0.56);
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .pricing-cta {
@@ -882,6 +902,7 @@ nav {
 
 .tt-card h4 {
   max-width: 560px;
+  min-height: 76px;
   margin-bottom: 8px;
   font-size: 21px;
   font-weight: 600;
@@ -1186,7 +1207,7 @@ nav {
 
 .trust-list {
   display: grid;
-  grid-template-rows: repeat(3, minmax(0, auto));
+  grid-template-rows: repeat(4, minmax(0, auto));
   align-self: center;
   height: auto;
   gap: 12px;
@@ -1361,7 +1382,12 @@ nav {
   }
 
   .trust-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+  }
+
+  .tt-card h4 {
+    min-height: 102px;
   }
 }
 
@@ -1542,6 +1568,10 @@ nav {
 
   .tt-grid {
     grid-template-columns: 1fr;
+  }
+
+  .tt-card h4 {
+    min-height: 0;
   }
 
   .agent-roster {
