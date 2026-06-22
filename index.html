@@ -42,7 +42,7 @@
           <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
         </ul>
         <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Cambiar a inglés">EN</button>
-        <a class="nav-cta" data-mailto href="mailto:hello@agentialabs.ai?subject=Reservar%20una%20demo">
+        <a class="nav-cta" data-demo-link href="https://calendar.app.google/xnZVVi1E6hxmVZvm8">
           <span data-i18n="nav.cta">Reserva una demo →</span>
         </a>
       </div>
@@ -60,7 +60,7 @@
     <a href="#trust" class="mm-link" data-i18n="nav.trust">Trust</a>
     <a href="#industries" class="mm-link" data-i18n="nav.industries">Industrias y casos de uso</a>
     <a href="#pricing" class="mm-link" data-i18n="nav.pricing">Pricing</a>
-    <a class="m-cta" data-mailto href="mailto:hello@agentialabs.ai?subject=Reservar%20una%20demo">
+    <a class="m-cta" data-demo-link href="https://calendar.app.google/xnZVVi1E6hxmVZvm8">
       <span data-i18n="nav.mobileCta">Reserva una demo</span>
     </a>
   </div>
@@ -82,7 +82,7 @@
         Diseñamos, construimos y gestionamos agentes de IA que asumen trabajo operativo repetitivo.
       </p>
       <div class="hero-actions">
-        <a href="mailto:hello@agentialabs.ai?subject=Reservar%20una%20demo" class="btn-primary" data-mailto>
+        <a href="https://calendar.app.google/xnZVVi1E6hxmVZvm8" class="btn-primary" data-demo-link>
           <span data-i18n="hero.primary">Reserva una demo</span>
         </a>
         <a href="#agents" class="btn-ghost">
@@ -271,7 +271,7 @@
 
         <div class="pricing-cta">
           <p data-i18n="pricing.cta.copy">¿Listo para liberar capacidad operativa? Reserva una demo e identificaremos un primer job donde tus agentes puedan crear capacidad medible en las próximas semanas.</p>
-          <a href="mailto:hello@agentialabs.ai?subject=Reservar%20una%20demo" class="btn-primary" data-mailto data-i18n="pricing.cta">Reserva una demo</a>
+          <a href="https://calendar.app.google/xnZVVi1E6hxmVZvm8" class="btn-primary" data-demo-link data-i18n="pricing.cta">Reserva una demo</a>
         </div>
       </div>
     </section>
@@ -591,8 +591,8 @@
         if (nextSrc && node.getAttribute("src") !== nextSrc) node.setAttribute("src", nextSrc);
       });
 
-      document.querySelectorAll("[data-mailto]").forEach((node) => {
-        node.setAttribute("href", `mailto:hello@agentialabs.ai?subject=${encodeURIComponent(dictionary.subject)}`);
+      document.querySelectorAll("[data-demo-link]").forEach((node) => {
+        node.setAttribute("href", "https://calendar.app.google/xnZVVi1E6hxmVZvm8");
       });
 
       if (toggle) {
