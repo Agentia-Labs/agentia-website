@@ -1643,6 +1643,7 @@ nav {
   .ham {
     display: flex;
     order: 3;
+    margin-left: 14px;
   }
 }
 
@@ -1665,6 +1666,7 @@ nav {
   .ham {
     display: flex;
     order: 3;
+    margin-left: 14px;
   }
 
   .logo-name {
