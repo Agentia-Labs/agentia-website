@@ -22,7 +22,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=hero-line-gap-20260622" />
+  <link rel="stylesheet" href="styles.css?v=section-zoom-20260622" />
 </head>
 <body>
   <header>
@@ -92,7 +92,6 @@
           </svg>
         </a>
       </div>
-      <div class="hero-claim" data-i18n="hero.claim">Capacidad operativa gestionada por agentes.</div>
     </section>
 
     <section class="section problem-section" id="problem">
@@ -308,7 +307,6 @@
           "hero.copy": "Diseñamos, construimos y gestionamos agentes de IA que asumen trabajo operativo repetitivo.",
           "hero.primary": "Reserva una demo",
           "hero.secondary": "Ver cómo trabajan",
-          "hero.claim": "Capacidad operativa gestionada por agentes.",
           "problem.kicker": "Managed Operations",
           "problem.title": "Aumenta capacidad operativa sin aumentar estructura.",
           "problem.copy.one": "Tu equipo no está corto de talento. Está atrapado en operación.",
@@ -414,7 +412,6 @@
           "hero.copy": "We design, build and manage AI agents that take responsibility for repetitive operational work.",
           "hero.primary": "Book a demo",
           "hero.secondary": "See how they work",
-          "hero.claim": "Operational capacity managed by agents.",
           "problem.kicker": "Managed Operations",
           "problem.title": "Increase operational capacity without adding structure.",
           "problem.copy.one": "Your team is not short on talent. It is trapped in operations.",
@@ -748,9 +745,12 @@
 
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("on");
+        if (entry.isIntersecting) {
+          entry.target.classList.add("on");
+          revealObserver.unobserve(entry.target);
+        }
       });
-    }, { threshold: 0.08 });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.12 });
     document.querySelectorAll(".rv").forEach((element) => revealObserver.observe(element));
 
   </script>

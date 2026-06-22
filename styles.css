@@ -382,14 +382,6 @@ nav {
   flex-wrap: wrap;
 }
 
-.hero-claim {
-  margin-top: 24px;
-  color: var(--accent-dark);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0;
-}
-
 .btn-primary,
 .button {
   display: inline-flex;
@@ -523,7 +515,7 @@ nav {
 }
 
 .lifecycle {
-  padding: 104px 48px;
+  padding: 88px 48px;
   background: var(--panel);
 }
 
@@ -671,13 +663,15 @@ nav {
 
 .rv {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(18px) scale(0.982);
+  transform-origin: center top;
+  transition: opacity 0.72s ease, transform 0.72s cubic-bezier(0.2, 0.78, 0.2, 1);
+  will-change: opacity, transform;
 }
 
 .rv.on {
   opacity: 1;
-  transform: none;
+  transform: translateY(0) scale(1);
 }
 
 .rv-d1 {
@@ -692,8 +686,16 @@ nav {
   transition-delay: 0.21s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .rv {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .section {
-  padding: 104px 0;
+  padding: 88px 0;
 }
 
 .problem-section {
@@ -733,7 +735,7 @@ nav {
 }
 
 .agents-section {
-  padding: 104px 48px;
+  padding: 88px 48px;
   background: var(--white);
 }
 
@@ -1485,11 +1487,11 @@ nav {
   }
 
   .section {
-    padding: 72px 0;
+    padding: 64px 0;
   }
 
   .lifecycle {
-    padding: 72px 20px;
+    padding: 64px 20px;
   }
 
   .cycle {
@@ -1568,7 +1570,7 @@ nav {
   }
 
   .agents-section {
-    padding: 72px 20px;
+    padding: 64px 20px;
   }
 
   .tt-grid {
