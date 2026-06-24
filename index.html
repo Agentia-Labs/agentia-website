@@ -3,18 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agentia Labs — Managed AI Operations</title>
+  <title>Agentia Labs — Operaciones de IA gestionadas</title>
   <meta
     name="description"
-    content="Agentia Labs designs and manages AI agents that execute repetitive operational work across admin, finance, documents, inboxes and reporting."
+    content="Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting."
   />
-  <meta property="og:title" content="Agentia Labs — Managed AI Operations" />
+  <meta property="og:title" content="Agentia Labs — Operaciones de IA gestionadas" />
   <meta
     property="og:description"
-    content="Agentia Labs designs and manages AI agents that execute repetitive operational work across admin, finance, documents, inboxes and reporting."
+    content="Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting."
   />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/workspace.png" />
+  <script>
+    (function () {
+      const storageKey = "agentia-lang";
+      const supported = ["es", "en"];
+      const headCopy = {
+        es: {
+          title: "Agentia Labs — Operaciones de IA gestionadas",
+          description: "Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting."
+        },
+        en: {
+          title: "Agentia Labs — Managed AI Operations",
+          description: "Agentia Labs designs and manages AI agents that execute repetitive operational work across admin, finance, documents, inboxes and reporting."
+        }
+      };
+      const isSupported = (lang) => supported.includes(lang);
+      const setMeta = (selector, attribute, value) => {
+        const node = document.querySelector(selector);
+        if (node) node.setAttribute(attribute, value);
+      };
+      const detectBrowserLang = () => {
+        const languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+        const preferred = languages.find(Boolean);
+        if (!preferred) return "es";
+        return preferred.toLowerCase().startsWith("es") ? "es" : "en";
+      };
+
+      let initialLang = "es";
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const requestedLang = params.get("lang");
+        const savedLang = localStorage.getItem(storageKey);
+        if (isSupported(requestedLang)) {
+          initialLang = requestedLang;
+        } else if (isSupported(savedLang)) {
+          initialLang = savedLang;
+        } else {
+          initialLang = detectBrowserLang();
+        }
+      } catch (error) {
+        initialLang = detectBrowserLang();
+      }
+
+      const copy = headCopy[initialLang] || headCopy.es;
+      document.documentElement.lang = initialLang;
+      document.documentElement.dataset.initialLang = initialLang;
+      document.documentElement.classList.add("i18n-pending");
+      document.title = copy.title;
+      setMeta('meta[name="description"]', "content", copy.description);
+      setMeta('meta[property="og:title"]', "content", copy.title);
+      setMeta('meta[property="og:description"]', "content", copy.description);
+    })();
+  </script>
+  <style>
+    html.i18n-pending body {
+      visibility: hidden;
+    }
+  </style>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -79,7 +136,7 @@
       </div>
       <h1 id="hero-title">
         <span class="hero-title-desktop" data-i18n="hero.title.desktop">Enfoca tu equipo en el negocio,<span class="title-line">deja que los agentes hagan el admin.</span></span>
-        <span class="hero-title-mobile" data-i18n="hero.title.mobile">Tú al negocio.<span class="title-line">Los agentes al admin.</span></span>
+        <span class="hero-title-mobile" data-i18n="hero.title.mobile">Menos ops.<span class="title-line">Más negocio.</span></span>
       </h1>
       <p data-i18n="hero.copy">
         Diseñamos, construimos y gestionamos agentes de IA que asumen trabajo operativo repetitivo.
@@ -294,8 +351,8 @@
   <script>
     const i18n = {
       es: {
-        title: "Agentia Labs — Managed AI Operations",
-        description: "Agentia Labs designs and manages AI agents that execute repetitive operational work across admin, finance, documents, inboxes and reporting.",
+        title: "Agentia Labs — Operaciones de IA gestionadas",
+        description: "Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting.",
         subject: "Reservar una demo",
         strings: {
           "nav.methodology": "Metodología",
@@ -508,10 +565,38 @@
     };
 
     const storageKey = "agentia-lang";
-    const params = new URLSearchParams(window.location.search);
-    const requestedLang = params.get("lang");
-    const savedLang = localStorage.getItem(storageKey);
-    const initialLang = requestedLang === "en" || requestedLang === "es" ? requestedLang : savedLang || "es";
+    const supportedLangs = ["es", "en"];
+    const isSupportedLang = (lang) => supportedLangs.includes(lang);
+
+    function getStoredLang() {
+      try {
+        const value = localStorage.getItem(storageKey);
+        return isSupportedLang(value) ? value : "";
+      } catch (error) {
+        return "";
+      }
+    }
+
+    function getRequestedLang() {
+      const params = new URLSearchParams(window.location.search);
+      const value = params.get("lang");
+      return isSupportedLang(value) ? value : "";
+    }
+
+    function getBrowserLang() {
+      const languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
+      const preferred = languages.find(Boolean);
+      if (!preferred) return "es";
+      return preferred.toLowerCase().startsWith("es") ? "es" : "en";
+    }
+
+    function resolveInitialLang() {
+      const headLang = document.documentElement.dataset.initialLang;
+      if (isSupportedLang(headLang)) return headLang;
+      return getRequestedLang() || getStoredLang() || getBrowserLang();
+    }
+
+    const initialLang = resolveInitialLang();
 
     (function drawLogo() {
       const SP = 30;
@@ -575,6 +660,10 @@
 
       const meta = document.querySelector('meta[name="description"]');
       if (meta) meta.setAttribute("content", dictionary.description);
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute("content", dictionary.title);
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+      if (ogDescription) ogDescription.setAttribute("content", dictionary.description);
 
       document.querySelectorAll("[data-i18n]").forEach((node) => {
         const key = node.getAttribute("data-i18n");
@@ -602,7 +691,12 @@
         toggle.setAttribute("aria-label", lang === "es" ? "Cambiar a inglés" : "Switch to Spanish");
       }
 
-      if (persist) localStorage.setItem(storageKey, lang);
+      if (persist) {
+        try {
+          localStorage.setItem(storageKey, lang);
+        } catch (error) {}
+      }
+      document.documentElement.classList.remove("i18n-pending");
       document.dispatchEvent(new CustomEvent("agentia:languagechange"));
     }
 
