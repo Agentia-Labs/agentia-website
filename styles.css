@@ -648,7 +648,7 @@ nav {
   box-shadow: 0 0 0 5px var(--accent-soft);
 }
 
-.cyc-label h4 {
+.cyc-label h3 {
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -962,7 +962,7 @@ html.snap-pages .pricing-section {
   letter-spacing: -0.02em;
 }
 
-.tt-card h4 {
+.tt-card-heading {
   max-width: 560px;
   min-height: 76px;
   margin-bottom: 8px;
@@ -972,7 +972,7 @@ html.snap-pages .pricing-section {
   letter-spacing: -0.02em;
 }
 
-.tt-card > p {
+.tt-card > p:not(.tt-card-heading) {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 14px;
@@ -1448,7 +1448,7 @@ html.snap-pages .pricing-section {
     grid-template-rows: none;
   }
 
-  .tt-card h4 {
+  .tt-card-heading {
     min-height: 102px;
   }
 }
@@ -1632,7 +1632,7 @@ html.snap-pages .pricing-section {
     grid-template-columns: 1fr;
   }
 
-  .tt-card h4 {
+  .tt-card-heading {
     min-height: 0;
   }
 

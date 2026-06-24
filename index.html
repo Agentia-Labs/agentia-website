@@ -8,13 +8,78 @@
     name="description"
     content="Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting."
   />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://agentialabs.ai/" />
+  <link rel="alternate" hreflang="es" href="https://agentialabs.ai/?lang=es" />
+  <link rel="alternate" hreflang="en" href="https://agentialabs.ai/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://agentialabs.ai/" />
   <meta property="og:title" content="Agentia Labs — Operaciones de IA gestionadas" />
   <meta
     property="og:description"
     content="Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/workspace.png" />
+  <meta property="og:url" content="https://agentialabs.ai/" />
+  <meta property="og:site_name" content="Agentia Labs" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://agentialabs.ai/assets/og-image.png" />
+  <meta property="og:image:secure_url" content="https://agentialabs.ai/assets/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Agentia Labs Managed AI Operations workspace preview" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agentia Labs — Operaciones de IA gestionadas" />
+  <meta
+    name="twitter:description"
+    content="Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting."
+  />
+  <meta name="twitter:image" content="https://agentialabs.ai/assets/og-image.png" />
+  <script type="application/ld+json" id="organization-schema">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "@id": "https://agentialabs.ai/#organization",
+      "name": "Agentia Labs",
+      "url": "https://agentialabs.ai/",
+      "logo": "https://agentialabs.ai/assets/agentia-mark-h.svg",
+      "description": "Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting.",
+      "inLanguage": "es",
+      "email": "hello@agentialabs.ai",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Spain",
+        "identifier": "ES"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ES"
+      },
+      "founders": [
+        "TODO: completar fundador 1",
+        "TODO: completar fundador 2"
+      ],
+      "sameAs": [
+        "TODO: completar LinkedIn de Agentia Labs",
+        "TODO: completar LinkedIn fundador 1",
+        "TODO: completar LinkedIn fundador 2"
+      ]
+    }
+  </script>
+  <script type="application/ld+json" id="website-schema">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://agentialabs.ai/#website",
+      "name": "Agentia Labs",
+      "url": "https://agentialabs.ai/",
+      "publisher": {
+        "@id": "https://agentialabs.ai/#organization"
+      },
+      "inLanguage": "es"
+    }
+  </script>
   <script>
     (function () {
       const storageKey = "agentia-lang";
@@ -22,17 +87,51 @@
       const headCopy = {
         es: {
           title: "Agentia Labs — Operaciones de IA gestionadas",
-          description: "Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting."
+          description: "Agentia Labs diseña y gestiona agentes de IA que ejecutan trabajo operativo repetitivo en administración, finanzas, documentos, inboxes y reporting.",
+          locale: "es_ES",
+          alternateLocale: "en_US"
         },
         en: {
           title: "Agentia Labs — Managed AI Operations",
-          description: "Agentia Labs designs and manages AI agents that execute repetitive operational work across admin, finance, documents, inboxes and reporting."
+          description: "Agentia Labs designs and manages AI agents that execute repetitive operational work across admin, finance, documents, inboxes and reporting.",
+          locale: "en_US",
+          alternateLocale: "es_ES"
         }
       };
       const isSupported = (lang) => supported.includes(lang);
       const setMeta = (selector, attribute, value) => {
         const node = document.querySelector(selector);
         if (node) node.setAttribute(attribute, value);
+      };
+      const syncStructuredData = (lang, copy) => {
+        const organization = document.getElementById("organization-schema");
+        const website = document.getElementById("website-schema");
+        if (organization) {
+          try {
+            const data = JSON.parse(organization.textContent);
+            data.description = copy.description;
+            data.inLanguage = lang;
+            organization.textContent = JSON.stringify(data);
+          } catch (error) {}
+        }
+        if (website) {
+          try {
+            const data = JSON.parse(website.textContent);
+            data.inLanguage = lang;
+            website.textContent = JSON.stringify(data);
+          } catch (error) {}
+        }
+      };
+      const syncSeo = (lang, copy) => {
+        document.title = copy.title;
+        setMeta('meta[name="description"]', "content", copy.description);
+        setMeta('meta[property="og:title"]', "content", copy.title);
+        setMeta('meta[property="og:description"]', "content", copy.description);
+        setMeta('meta[property="og:locale"]', "content", copy.locale);
+        setMeta('meta[property="og:locale:alternate"]', "content", copy.alternateLocale);
+        setMeta('meta[name="twitter:title"]', "content", copy.title);
+        setMeta('meta[name="twitter:description"]', "content", copy.description);
+        syncStructuredData(lang, copy);
       };
       const detectBrowserLang = () => {
         const languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""];
@@ -61,10 +160,11 @@
       document.documentElement.lang = initialLang;
       document.documentElement.dataset.initialLang = initialLang;
       document.documentElement.classList.add("i18n-pending");
-      document.title = copy.title;
-      setMeta('meta[name="description"]', "content", copy.description);
-      setMeta('meta[property="og:title"]', "content", copy.title);
-      setMeta('meta[property="og:description"]', "content", copy.description);
+      window.agentiaSyncSeo = syncSeo;
+      window.setTimeout(() => {
+        document.documentElement.classList.remove("i18n-pending");
+      }, 1200);
+      syncSeo(initialLang, copy);
     })();
   </script>
   <style>
@@ -75,6 +175,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://calendar.app.google" />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
@@ -183,23 +284,23 @@
           </div>
           <div class="cyc-label" style="left:310px;top:40px">
             <div class="n">1</div>
-            <div class="cyc-body"><h4 data-i18n="lifecycle.one.title">Descubrimos</h4><p data-i18n="lifecycle.one.copy">Mapeamos los jobs operativos que consumen tiempo en tu empresa.</p></div>
+            <div class="cyc-body"><h3 data-i18n="lifecycle.one.title">Descubrimos</h3><p data-i18n="lifecycle.one.copy">Mapeamos los jobs operativos que consumen tiempo en tu empresa.</p></div>
           </div>
           <div class="cyc-label" style="left:570px;top:205px">
             <div class="n">2</div>
-            <div class="cyc-body"><h4 data-i18n="lifecycle.two.title">Diseñamos</h4><p data-i18n="lifecycle.two.copy">Definimos proceso, responsabilidades, checkpoints humanos, integraciones y métricas.</p></div>
+            <div class="cyc-body"><h3 data-i18n="lifecycle.two.title">Diseñamos</h3><p data-i18n="lifecycle.two.copy">Definimos proceso, responsabilidades, checkpoints humanos, integraciones y métricas.</p></div>
           </div>
           <div class="cyc-label" style="left:457px;top:492px">
             <div class="n">3</div>
-            <div class="cyc-body"><h4 data-i18n="lifecycle.three.title">Construimos</h4><p data-i18n="lifecycle.three.copy">Implementamos agentes, herramientas y workflows para ejecutar el job en producción.</p></div>
+            <div class="cyc-body"><h3 data-i18n="lifecycle.three.title">Construimos</h3><p data-i18n="lifecycle.three.copy">Implementamos agentes, herramientas y workflows para ejecutar el job en producción.</p></div>
           </div>
           <div class="cyc-label" style="left:163px;top:492px">
             <div class="n">4</div>
-            <div class="cyc-body"><h4 data-i18n="lifecycle.four.title">Gestionamos</h4><p data-i18n="lifecycle.four.copy">Monitorizamos rendimiento, incidentes, prompts, calidad y mejora continua.</p></div>
+            <div class="cyc-body"><h3 data-i18n="lifecycle.four.title">Gestionamos</h3><p data-i18n="lifecycle.four.copy">Monitorizamos rendimiento, incidentes, prompts, calidad y mejora continua.</p></div>
           </div>
           <div class="cyc-label" style="left:48px;top:205px">
             <div class="n">5</div>
-            <div class="cyc-body"><h4 data-i18n="lifecycle.five.title">Medimos</h4><p data-i18n="lifecycle.five.copy">Agentia Workspace muestra trabajo ejecutado, resultados y capacidad creada.</p><span class="cyc-badge" data-i18n="lifecycle.five.badge">Visible</span></div>
+            <div class="cyc-body"><h3 data-i18n="lifecycle.five.title">Medimos</h3><p data-i18n="lifecycle.five.copy">Agentia Workspace muestra trabajo ejecutado, resultados y capacidad creada.</p><span class="cyc-badge" data-i18n="lifecycle.five.badge">Visible</span></div>
           </div>
         </div>
         <div class="cyc-loop rv">
@@ -220,16 +321,26 @@
           <div class="tt-card">
             <div class="tt-icon conv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
             <h3 data-i18n="agents.conversational.label">Agentes conversacionales</h3>
-            <h4 data-i18n="agents.conversational.title">Conectamos tus asistentes al contexto real de tu empresa.</h4>
+            <p class="tt-card-heading" data-i18n="agents.conversational.title">Conectamos tus asistentes al contexto real de tu empresa.</p>
             <p data-i18n="agents.conversational.copy">Conectamos ChatGPT, Claude o tu asistente preferido a procesos, documentos y conocimiento interno para que el equipo avance con menos fricción.</p>
-            <div class="tt-shot-wrap"><img class="tt-shot" src="assets/agent-chat.png?v=chat-fix-20260619" data-image-en="assets/agent-chat.png?v=chat-fix-20260619" data-image-es="assets/agent-chat-es.png?v=chat-fix-20260619" data-i18n-alt="agents.conversational.alt" alt="Vista de un agente conversacional" loading="lazy"></div>
+            <div class="tt-shot-wrap">
+              <picture>
+                <source type="image/webp" srcset="assets/agent-chat-es.webp?v=chat-fix-20260619" data-image-en="assets/agent-chat.webp?v=chat-fix-20260619" data-image-es="assets/agent-chat-es.webp?v=chat-fix-20260619">
+                <img class="tt-shot" src="assets/agent-chat-es.png?v=chat-fix-20260619" data-image-en="assets/agent-chat.png?v=chat-fix-20260619" data-image-es="assets/agent-chat-es.png?v=chat-fix-20260619" data-i18n-alt="agents.conversational.alt" alt="Vista de un agente conversacional" width="1600" height="1520" loading="lazy" decoding="async">
+              </picture>
+            </div>
           </div>
           <div class="tt-card">
             <div class="tt-icon head"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
             <h3 data-i18n="agents.headless.label">Agentes en segundo plano</h3>
-            <h4 data-i18n="agents.headless.title">Agentes en segundo plano para el trabajo operativo repetitivo.</h4>
+            <p class="tt-card-heading" data-i18n="agents.headless.title">Agentes en segundo plano para el trabajo operativo repetitivo.</p>
             <p data-i18n="agents.headless.copy">Ejecutan trabajo recurrente en administración, finanzas, documentos, inboxes, reporting y coordinación interna para liberar capacidad sin aumentar plantilla.</p>
-            <div class="tt-shot-wrap"><img class="tt-shot" src="assets/agent-email.png" data-image-en="assets/agent-email.png" data-image-es="assets/agent-email-es.png" data-i18n-alt="agents.headless.alt" alt="Vista de un agente sin interfaz preparando una acción" loading="lazy"></div>
+            <div class="tt-shot-wrap">
+              <picture>
+                <source type="image/webp" srcset="assets/agent-email-es.webp" data-image-en="assets/agent-email.webp" data-image-es="assets/agent-email-es.webp">
+                <img class="tt-shot" src="assets/agent-email-es.png" data-image-en="assets/agent-email.png" data-image-es="assets/agent-email-es.png" data-i18n-alt="agents.headless.alt" alt="Vista de un agente sin interfaz preparando una acción" width="1600" height="1520" loading="lazy" decoding="async">
+              </picture>
+            </div>
           </div>
         </div>
         <div class="agent-roster rv">
@@ -257,7 +368,10 @@
 
         <div class="trust-layout">
           <figure class="workspace-frame trust-frame">
-            <img src="assets/workspace.png?v=agent-taxonomy-20260622" alt="Panel de control de Agentia con agentes activos y métricas de operación" />
+            <picture>
+              <source type="image/webp" srcset="assets/workspace.webp?v=agent-taxonomy-20260622">
+              <img src="assets/workspace.png?v=agent-taxonomy-20260622" alt="Panel de control de Agentia con agentes activos y métricas de operación" width="2720" height="1920" loading="lazy" decoding="async" />
+            </picture>
           </figure>
 
           <div class="trust-list">
@@ -340,7 +454,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <a class="footer-brand" href="#top">
-        <img src="assets/agentia-mark-h-light.svg" alt="" />
+        <img src="assets/agentia-mark-h-light.svg" alt="" width="64" height="64" loading="lazy" decoding="async" />
         <span>Agentia Labs</span>
       </a>
       <p data-i18n="footer.copy">© 2026 Agentia Labs. Diseñamos, implementamos y gestionamos agentes de IA para operaciones internas.</p>
@@ -655,15 +769,33 @@
     function setLanguage(lang, persist = true) {
       const dictionary = i18n[lang] || i18n.es;
       const toggle = document.getElementById("lang-toggle");
+      const seoCopy = {
+        title: dictionary.title,
+        description: dictionary.description,
+        locale: lang === "es" ? "es_ES" : "en_US",
+        alternateLocale: lang === "es" ? "en_US" : "es_ES"
+      };
       document.documentElement.lang = lang;
-      document.title = dictionary.title;
 
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute("content", dictionary.description);
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute("content", dictionary.title);
-      const ogDescription = document.querySelector('meta[property="og:description"]');
-      if (ogDescription) ogDescription.setAttribute("content", dictionary.description);
+      if (window.agentiaSyncSeo) {
+        window.agentiaSyncSeo(lang, seoCopy);
+      } else {
+        document.title = dictionary.title;
+        const meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute("content", dictionary.description);
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute("content", dictionary.title);
+        const ogDescription = document.querySelector('meta[property="og:description"]');
+        if (ogDescription) ogDescription.setAttribute("content", dictionary.description);
+        const ogLocale = document.querySelector('meta[property="og:locale"]');
+        if (ogLocale) ogLocale.setAttribute("content", seoCopy.locale);
+        const ogLocaleAlternate = document.querySelector('meta[property="og:locale:alternate"]');
+        if (ogLocaleAlternate) ogLocaleAlternate.setAttribute("content", seoCopy.alternateLocale);
+        const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twitterTitle) twitterTitle.setAttribute("content", dictionary.title);
+        const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+        if (twitterDescription) twitterDescription.setAttribute("content", dictionary.description);
+      }
 
       document.querySelectorAll("[data-i18n]").forEach((node) => {
         const key = node.getAttribute("data-i18n");
@@ -679,7 +811,8 @@
 
       document.querySelectorAll("[data-image-en][data-image-es]").forEach((node) => {
         const nextSrc = node.getAttribute(lang === "es" ? "data-image-es" : "data-image-en");
-        if (nextSrc && node.getAttribute("src") !== nextSrc) node.setAttribute("src", nextSrc);
+        const imageAttribute = node.tagName === "SOURCE" ? "srcset" : "src";
+        if (nextSrc && node.getAttribute(imageAttribute) !== nextSrc) node.setAttribute(imageAttribute, nextSrc);
       });
 
       document.querySelectorAll("[data-demo-link]").forEach((node) => {
