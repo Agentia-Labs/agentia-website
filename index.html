@@ -175,7 +175,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://calendar.app.google" />
+  <link rel="preconnect" href="https://crm-pi-nine-82.vercel.app" />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
@@ -200,7 +200,7 @@
           <li><a href="#pricing" data-i18n="nav.pricing">Pricing</a></li>
         </ul>
         <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Cambiar a inglés">EN</button>
-        <a class="nav-cta" data-demo-link href="https://calendar.app.google/xnZVVi1E6hxmVZvm8">
+        <a class="nav-cta" data-demo-link href="#demo-form">
           <span data-i18n="nav.cta">Reserva una demo →</span>
         </a>
       </div>
@@ -218,7 +218,7 @@
     <a href="#trust" class="mm-link" data-i18n="nav.trust">Trust</a>
     <a href="#industries" class="mm-link" data-i18n="nav.industries">Industrias y casos de uso</a>
     <a href="#pricing" class="mm-link" data-i18n="nav.pricing">Pricing</a>
-    <a class="m-cta" data-demo-link href="https://calendar.app.google/xnZVVi1E6hxmVZvm8">
+    <a class="m-cta" data-demo-link href="#demo-form">
       <span data-i18n="nav.mobileCta">Reserva una demo</span>
     </a>
   </div>
@@ -243,7 +243,7 @@
         Diseñamos, construimos y gestionamos agentes de IA que asumen trabajo operativo repetitivo.
       </p>
       <div class="hero-actions">
-        <a href="https://calendar.app.google/xnZVVi1E6hxmVZvm8" class="btn-primary" data-demo-link>
+        <a href="#demo-form" class="btn-primary" data-demo-link>
           <span data-i18n="hero.primary">Reserva una demo</span>
         </a>
         <a href="#agents" class="btn-ghost">
@@ -444,7 +444,80 @@
 
         <div class="pricing-cta">
           <p data-i18n="pricing.cta.copy">¿Listo para liberar capacidad operativa? Reserva una demo e identificaremos un primer job donde tus agentes puedan crear capacidad medible en las próximas semanas.</p>
-          <a href="https://calendar.app.google/xnZVVi1E6hxmVZvm8" class="btn-primary" data-demo-link data-i18n="pricing.cta">Reserva una demo</a>
+          <a href="#demo-form" class="btn-primary" data-demo-link data-i18n="pricing.cta">Reserva una demo</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" id="demo-form">
+      <div class="container">
+        <div class="demo-layout">
+          <div class="demo-copy">
+            <p class="section-kicker" data-i18n="demo.kicker">Reserva una demo</p>
+            <h2 class="section-title" data-i18n="demo.title">Encuentra la primera operación que tus agentes deberían ejecutar.</h2>
+            <p class="body-copy" data-i18n="demo.copy">Cuéntanos el contexto mínimo y revisaremos contigo qué trabajo operativo puede convertirse primero en capacidad gestionada por agentes.</p>
+            <p class="demo-note" data-i18n="demo.note">Primero cualificamos el caso, después agendamos una conversación útil.</p>
+          </div>
+
+          <form class="demo-form" data-demo-form data-endpoint="https://crm-pi-nine-82.vercel.app/api/public">
+            <input type="text" name="websiteUrl" tabindex="-1" autocomplete="off" aria-hidden="true" class="demo-honeypot" />
+
+            <label>
+              <span data-i18n="demo.firstName">Nombre</span>
+              <input name="firstName" type="text" autocomplete="given-name" placeholder="Paula" required />
+            </label>
+
+            <label>
+              <span data-i18n="demo.lastName">Apellidos</span>
+              <input name="lastName" type="text" autocomplete="family-name" placeholder="Rodríguez" required />
+            </label>
+
+            <label>
+              <span data-i18n="demo.company">Empresa</span>
+              <input name="company" type="text" autocomplete="organization" placeholder="Nombre de la empresa" data-i18n-placeholder="demo.companyPlaceholder" required />
+            </label>
+
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" autocomplete="email" placeholder="paula@empresa.com" data-i18n-placeholder="demo.emailPlaceholder" required />
+            </label>
+
+            <label>
+              <span data-i18n="demo.phone">Teléfono</span>
+              <input name="phone" type="tel" autocomplete="tel" placeholder="+34 600 000 000" required />
+            </label>
+
+            <label>
+              <span data-i18n="demo.industry">Industria</span>
+              <select name="industry" required>
+                <option value="" data-i18n="demo.industryPlaceholder">Selecciona una</option>
+                <option value="Retail &amp; eCommerce">Retail &amp; eCommerce</option>
+                <option value="Professional Services" data-i18n="demo.industryServices">Servicios profesionales</option>
+                <option value="Finance &amp; Accounting" data-i18n="demo.industryFinance">Finanzas y contabilidad</option>
+                <option value="Real Estate" data-i18n="demo.industryRealEstate">Inmobiliario</option>
+                <option value="Manufacturing" data-i18n="demo.industryManufacturing">Industria / Manufacturing</option>
+                <option value="Logistics &amp; Supply Chain" data-i18n="demo.industryLogistics">Logística y supply chain</option>
+                <option value="Hospitality &amp; Travel" data-i18n="demo.industryHospitality">Hospitality / Travel</option>
+                <option value="Education" data-i18n="demo.industryEducation">Educación</option>
+                <option value="Technology &amp; SaaS" data-i18n="demo.industryTech">Tecnología / SaaS</option>
+                <option value="Healthcare &amp; Clinics" data-i18n="demo.industryHealthcare">Salud / clínicas</option>
+                <option value="Other" data-i18n="demo.industryOther">Otro</option>
+              </select>
+            </label>
+
+            <label class="demo-form-full">
+              <span data-i18n="demo.operation">Operación a liberar primero</span>
+              <textarea name="operation" rows="4" placeholder="Reporting semanal, facturas, inbox compartido, documentos, aprobaciones..." data-i18n-placeholder="demo.operationPlaceholder"></textarea>
+            </label>
+
+            <button class="btn-primary" type="submit">
+              <span data-i18n="demo.submit">Enviar solicitud</span>
+            </button>
+
+            <p class="demo-form-status" data-demo-status role="status" aria-live="polite" data-i18n="demo.status.idle">
+              Usaremos estos datos solo para responder a tu solicitud y preparar la demo.
+            </p>
+          </form>
         </div>
       </div>
     </section>
@@ -550,6 +623,35 @@
           "pricing.licenseNote": "Las plataformas de agentes conversacionales, como ChatGPT o Claude, no están incluidas en el pricing de Agentia.",
           "pricing.cta.copy": "¿Listo para liberar capacidad operativa? Reserva una demo e identificaremos un primer job donde tus agentes puedan crear capacidad medible en las próximas semanas.",
           "pricing.cta": "Reserva una demo",
+          "demo.kicker": "Reserva una demo",
+          "demo.title": "Encuentra la primera operación que tus agentes deberían ejecutar.",
+          "demo.copy": "Cuéntanos el contexto mínimo y revisaremos contigo qué trabajo operativo puede convertirse primero en capacidad gestionada por agentes.",
+          "demo.note": "Primero cualificamos el caso, después agendamos una conversación útil.",
+          "demo.firstName": "Nombre",
+          "demo.lastName": "Apellidos",
+          "demo.company": "Empresa",
+          "demo.companyPlaceholder": "Nombre de la empresa",
+          "demo.emailPlaceholder": "paula@empresa.com",
+          "demo.phone": "Teléfono",
+          "demo.industry": "Industria",
+          "demo.industryPlaceholder": "Selecciona una",
+          "demo.industryServices": "Servicios profesionales",
+          "demo.industryFinance": "Finanzas y contabilidad",
+          "demo.industryRealEstate": "Inmobiliario",
+          "demo.industryManufacturing": "Industria / Manufacturing",
+          "demo.industryLogistics": "Logística y supply chain",
+          "demo.industryHospitality": "Hospitality / Travel",
+          "demo.industryEducation": "Educación",
+          "demo.industryTech": "Tecnología / SaaS",
+          "demo.industryHealthcare": "Salud / clínicas",
+          "demo.industryOther": "Otro",
+          "demo.operation": "Operación a liberar primero",
+          "demo.operationPlaceholder": "Reporting semanal, facturas, inbox compartido, documentos, aprobaciones...",
+          "demo.submit": "Enviar solicitud",
+          "demo.status.idle": "Usaremos estos datos solo para responder a tu solicitud y preparar la demo.",
+          "demo.status.sending": "Enviando solicitud...",
+          "demo.status.success": "Solicitud enviada. La revisaremos y te responderemos en breve.",
+          "demo.status.error": "No hemos podido enviar la solicitud. Inténtalo de nuevo o escribe a hello@agentialabs.ai.",
           "verticals.kicker": "Use cases",
           "verticals.title": "Empezamos donde el trabajo operativo es repetitivo, medible y doloroso.",
           "verticals.copy": "No intentamos cubrirlo todo. Empezamos por casos concretos como back office administrativo, finanzas, documentos, inboxes y reporting.",
@@ -656,6 +758,35 @@
           "pricing.licenseNote": "Conversational agent platforms, like ChatGPT or Claude, are not included in Agentia's pricing.",
           "pricing.cta.copy": "Ready to unlock operational capacity? Book a demo and we will identify a first job where your agents can create measurable capacity in the next few weeks.",
           "pricing.cta": "Book a demo",
+          "demo.kicker": "Request a demo",
+          "demo.title": "Find the first operation your agents should run.",
+          "demo.copy": "Tell us the minimum context and we will review which operational job can become agent-managed capacity first.",
+          "demo.note": "We qualify the case first, then schedule a useful conversation.",
+          "demo.firstName": "First name",
+          "demo.lastName": "Last name",
+          "demo.company": "Company",
+          "demo.companyPlaceholder": "Company name",
+          "demo.emailPlaceholder": "paula@company.com",
+          "demo.phone": "Phone",
+          "demo.industry": "Industry",
+          "demo.industryPlaceholder": "Select one",
+          "demo.industryServices": "Professional Services",
+          "demo.industryFinance": "Finance & Accounting",
+          "demo.industryRealEstate": "Real Estate",
+          "demo.industryManufacturing": "Manufacturing",
+          "demo.industryLogistics": "Logistics & Supply Chain",
+          "demo.industryHospitality": "Hospitality & Travel",
+          "demo.industryEducation": "Education",
+          "demo.industryTech": "Technology & SaaS",
+          "demo.industryHealthcare": "Healthcare & Clinics",
+          "demo.industryOther": "Other",
+          "demo.operation": "First operation to free up",
+          "demo.operationPlaceholder": "Weekly reporting, invoices, shared inbox, documents, approvals...",
+          "demo.submit": "Send request",
+          "demo.status.idle": "We will only use this data to answer your request and prepare the demo.",
+          "demo.status.sending": "Sending request...",
+          "demo.status.success": "Request sent. We will review it and come back to you shortly.",
+          "demo.status.error": "We could not send the request. Please try again or email hello@agentialabs.ai.",
           "verticals.kicker": "Use cases",
           "verticals.title": "We start where operational workload is repetitive, measurable and painful.",
           "verticals.copy": "We do not try to cover everything. We start with concrete use cases like administrative back office, finance, documents, inboxes and reporting.",
@@ -809,6 +940,12 @@
         if (value) node.setAttribute("alt", value);
       });
 
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
+        const key = node.getAttribute("data-i18n-placeholder");
+        const value = dictionary.strings[key];
+        if (value) node.setAttribute("placeholder", value);
+      });
+
       document.querySelectorAll("[data-image-en][data-image-es]").forEach((node) => {
         const nextSrc = node.getAttribute(lang === "es" ? "data-image-es" : "data-image-en");
         const imageAttribute = node.tagName === "SOURCE" ? "srcset" : "src";
@@ -816,7 +953,7 @@
       });
 
       document.querySelectorAll("[data-demo-link]").forEach((node) => {
-        node.setAttribute("href", "https://calendar.app.google/xnZVVi1E6hxmVZvm8");
+        node.setAttribute("href", "#demo-form");
       });
 
       if (toggle) {
@@ -928,6 +1065,59 @@
     setLanguage(initialLang, false);
     syncBookScroll();
     syncActiveNav();
+
+    (function wireDemoForm() {
+      const form = document.querySelector("[data-demo-form]");
+      if (!form) return;
+
+      const status = form.querySelector("[data-demo-status]");
+      const submit = form.querySelector('button[type="submit"]');
+      const endpoint = () => window.AGENTIA_CRM_DEMO_ENDPOINT || form.dataset.endpoint;
+      const currentLanguage = () => (document.documentElement.lang || "es").startsWith("es") ? "es" : "en";
+      const statusKey = (state) => `demo.status.${state}`;
+
+      const setStatus = (state) => {
+        if (!status) return;
+        const dictionary = i18n[currentLanguage()] || i18n.es;
+        status.textContent = dictionary.strings[statusKey(state)] || dictionary.strings[statusKey("idle")];
+        status.dataset.state = state;
+      };
+
+      document.addEventListener("agentia:languagechange", () => setStatus("idle"));
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!endpoint()) {
+          setStatus("error");
+          return;
+        }
+
+        const payload = Object.fromEntries(new FormData(form).entries());
+        payload.pageUrl = window.location.href;
+        payload.language = currentLanguage();
+
+        setStatus("sending");
+        if (submit) submit.disabled = true;
+
+        try {
+          const response = await fetch(endpoint(), {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || data.ok === false) {
+            throw new Error(data.error || "Request failed");
+          }
+          form.reset();
+          setStatus("success");
+        } catch (error) {
+          setStatus("error");
+        } finally {
+          if (submit) submit.disabled = false;
+        }
+      });
+    })();
 
     (function startLifecycleCycle() {
       const svg = document.getElementById("cycle-svg");
